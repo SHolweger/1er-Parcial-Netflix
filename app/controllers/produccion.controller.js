@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     // Validamos que dentro del  request no venga vacio el nombre, de lo contrario returna error
     if (!req.body.nombre) {
         res.status(400).send({
-            message: "Nombre nopuede estar vacío!"
+            message: "Nombre no puede estar vacío!"
         });
         return;
     }
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
         actores: req.body.actores, 
         duracion: req.body.duracion,
         tipo: req.body.tipo,
-        categoria: req.body.ingreso,
+        categoria: req.body.categoria,
         lanzamiento:req.body.lanzamiento
     };
 
@@ -61,6 +61,29 @@ exports.findOne = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "Ha ocurrido un error obteniendo la produccion con el id=" + id
+            });
+        });
+};
+
+//GET por nombre
+exports.findByName = (req, res) => {
+    const nombre = req.params.nombre;
+
+    Produccion.findAll({
+        where: { nombre: { [Op.iLike]: `%${nombre}%` } }
+    })
+        .then(data => {
+            if (data.length > 0) {
+                res.send(data);
+            } else {
+                res.status(404).send({
+                    message: `No se encontraron producciones con el nombre ${nombre}.`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error al buscar producciones por nombre: " + err.message
             });
         });
 };

@@ -8,6 +8,8 @@ module.exports = app => {
 
     router.get("/:id", producciones.findOne);
 
+    router.get("/:name", producciones.findOne);
+
     router.put("/update/:id", producciones.update);
 
     router.delete("/delete/:id", producciones.delete);

@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
         sinopsis: {
             type: Sequelize.STRING
         },
+        director: {
+            type: Sequelize.STRING
+        },
         actores: {
             type: Sequelize.STRING
         },
