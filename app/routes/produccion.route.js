@@ -8,7 +8,7 @@ module.exports = app => {
 
     router.get("/:id", producciones.findOne);
 
-    router.get("/nombre/:name", producciones.findByName);
+    router.get("/nombre/:nombre", producciones.findByName);
 
     router.put("/update/:id", producciones.update);
 
