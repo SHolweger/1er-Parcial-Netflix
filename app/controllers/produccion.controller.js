@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     const produccion = {
         nombre: req.body.nombre,
         sinopsis: req.body.sinopsis,
+        director: req.body.director,
         actores: req.body.actores, 
         duracion: req.body.duracion,
         tipo: req.body.tipo,
